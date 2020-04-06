@@ -59,7 +59,7 @@ class App extends React.Component {
           deleteChar={this.deleteChar}
           changeName={this.changeName}
         />
-        Choose Your Enemy
+        Choose Your Obstacle
         <Jumpers
           charactersArr={this.state.charactersArr}
           newCharacter={this.newCharacter}

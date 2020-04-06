@@ -28,21 +28,21 @@ class CharacterSelect extends React.Component {
 
   render() {
     return (
-      <div>
+      <section className='selected'>
       <img 
         className='selected-image'
         src={this.props.character.image}
         alt={this.props.character.name}
       />
       {this.state.edit ? (
-        <div>
+        <section>
           <input onChange={event => this.handleChange(event.target.value)}/>
           <button onClick={this.toggleEdit}>Cancel</button>
           <button onClick={this.updateName}>Save</button>
-        </div>
+        </section>
       ) : (<p onDoubleClick={this.toggleEdit}>{this.props.character.name}</p>)
       }
-      </div>
+      </section>
     )
   }
 }

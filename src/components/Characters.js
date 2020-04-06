@@ -73,10 +73,13 @@ class Characters extends React.Component {
         <section className='create-own'>
           Create Your Own:
           <input placeholder='Name' name='name' value={this.state.name} onChange={event => this.handleChange(event.target.name, event.target.value)}/>
-          <input placeholder='Image' name='image'value={this.state.image} onChange={event => this.handleChange(event.target.name, event.target.value)}/>
+          <input placeholder='Image URL' name='image'value={this.state.image} onChange={event => this.handleChange(event.target.name, event.target.value)}/>
           <button onClick={() => this.createChar(this.state.name, this.state.image)} >Create</button>
         </section>
-        {selected}
+        <section className='selected-section'>
+          Selected Character
+          {selected}
+        </section>
       </section>
     )
   }

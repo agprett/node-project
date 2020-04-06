@@ -1,8 +1,9 @@
 import React from 'react'
   
 function Display(props) {
+  console.log(props)
   return (
-    <div className='character'>
+    <div className={`character ${props.character.type === 'character' ? 'hero' : 'villain'}`}>
       <img
         className='char-list-img'
         src={props.character.image}

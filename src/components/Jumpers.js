@@ -63,14 +63,21 @@ class Jumpers extends React.Component {
     })
 
     return (
-      <div>
-        {charList}
-        Create Your own
-        <input placeholder='Name' name='name' onChange={event => this.handleChange(event.target.name, event.target.value)}/>
-        <input placeholder='Image' name='image' onChange={event => this.handleChange(event.target.name, event.target.value)}/>
-        <button onClick={() => this.createChar(this.state.name, this.state.image)} >Create</button>
-        {selected}
-      </div>
+      <section className='characters'>
+        <section className='selector'>
+          {charList}
+        </section>
+        <section className='create-own'>
+          Create Your own
+          <input placeholder='Name' name='name' onChange={event => this.handleChange(event.target.name, event.target.value)}/>
+          <input placeholder='Image URL' name='image' onChange={event => this.handleChange(event.target.name, event.target.value)}/>
+          <button onClick={() => this.createChar(this.state.name, this.state.image)} >Create</button>
+        </section>
+        <section className='selected-section'>
+          Selected Obstacle
+          {selected}
+        </section>
+      </section>
     )
   }
 }
