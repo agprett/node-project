@@ -7,6 +7,8 @@ import Header from './components/Header'
 import Characters from './components/Characters'
 import Jumpers from './components/Jumpers'
 
+import Game from './components/Game'
+
 class App extends React.Component {
   constructor() {
     super()
@@ -99,6 +101,10 @@ class App extends React.Component {
           selectedJumper={this.state.selectedJumper}
           selectChar={this.selectChar}
           changeName={this.changeName}
+        />
+        <Game 
+          selectedCharacter={this.state.selectedCharacter}
+          selectedJumper={this.state.selectedJumper}
         />
       </div>
     );

@@ -8,7 +8,7 @@ function Display(props) {
         src={props.character.image}
         alt={props.character.name}
         />
-      {props.character.name}
+      <p className='name'>{props.character.name}</p>
       <button
         onClick={() => props.selectChar(props.character.name, props.character.image, props.character.type)}
       >

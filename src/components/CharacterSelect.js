@@ -40,7 +40,7 @@ class CharacterSelect extends React.Component {
           <button onClick={this.toggleEdit}>Cancel</button>
           <button onClick={this.updateName}>Save</button>
         </section>
-      ) : (<p onDoubleClick={this.toggleEdit}>{this.props.selectedCharacter.name}</p>)
+      ) : (<p className='name' onDoubleClick={this.toggleEdit}>{this.props.selectedCharacter.name}</p>)
       }
       </section>
     )

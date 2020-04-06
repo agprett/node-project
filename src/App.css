@@ -54,7 +54,7 @@
 }
 
 .char-list-img {
-  height: 50px;
+  height: 45px;
 }
 
 .create-own {
@@ -96,4 +96,59 @@
 
 .selected-image {
   height: 100px;
+}
+
+.name {
+  text-transform: uppercase;
+}
+
+.game-background {
+  height: 500px;
+  width: 100%;
+  background-image: url(https://1.bp.blogspot.com/-4egE2E5aF5M/Wvct17rpKNI/AAAAAAAAE_U/GukxutklTggqp4s1nb52JoTRiFiOLMEYwCLcBGAs/s1600/2d-video-game-bk-effect.3gif.gif);
+  background-size: contain;
+  margin-top: 100px;
+}
+
+.runner {
+  height: 100px;
+  position: relative;
+  top: 300px;
+  right: 40%;
+}
+
+.jumping {
+  animation: jump 1.5s 1;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes jump {
+  from {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-100px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.jumper {
+  height: 75px;
+  position: relative;
+  left: 40%;
+  top: 300px;
+  /* animation: slidein 10s; */
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+  }
+
+  to {
+    margin-left: 100%;
+  }
 }
