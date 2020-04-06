@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import Display from './Display'
 import CharacterSelect from './CharacterSelect'
 
@@ -12,15 +11,8 @@ class Jumpers extends React.Component {
       image: ''
     }
 
-    this.selectChar = this.selectChar.bind(this)
     this.handleChange = this.handleChange.bind(this)
-  }
-
-  selectChar(id){
-    axios.get(`api/characters/?id=${id}`).then(res => {
-      this.setState({character: res.data})
-    })
-    .catch(() => alert(this.state.fail))
+    this.createChar = this.createChar.bind(this)
   }
 
   handleChange(name, value) {
@@ -35,32 +27,25 @@ class Jumpers extends React.Component {
     }
 
     this.props.newCharacter(newChar)
+    this.setState({
+      name: '',
+      image: ''})
   }
 
   render() {
     const charList = this.props.charactersArr
       .filter(character => character.type === 'jumper')
-      .map(
-        character => {
-      return (
-        <Display
-          key={character.id}
-          character={character}
-          selectChar={this.selectChar}
-          deleteChar={this.props.deleteChar}
-        />
-      )
-    })
-
-    const selected = this.state.character.map(character => {
-      return (
-        <CharacterSelect 
-          key={character.id}
-          character={character}
-          changeName={this.props.changeName}
-        />
-      )
-    })
+      .map(character => {
+        return (
+          <Display
+            key={character.id}
+            character={character}
+            selectChar={this.props.selectChar}
+            deleteChar={this.props.deleteChar}
+          />
+        )
+      }
+    )
 
     return (
       <section className='characters'>
@@ -75,7 +60,12 @@ class Jumpers extends React.Component {
         </section>
         <section className='selected-section'>
           Selected Obstacle
-          {selected}
+          <CharacterSelect 
+            key={this.props.selectedJumper.id}
+            selectedCharacter={this.props.selectedJumper}
+            changeName={this.props.changeName}
+            displayType='Jumper'
+          />
         </section>
       </section>
     )

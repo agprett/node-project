@@ -1,6 +1,4 @@
 const characters = require('../../characters.json')
-let selectedChar = {}
-let selectedJumper = {}
 let id = +characters[characters.length-1].id + 1
 
 module.exports = {
@@ -24,22 +22,6 @@ module.exports = {
 
     id++
     characters.push(newCharacter)
-    res.status(200).send(characters)
-  },
-
-  changeName: (req, res) => {
-    const {id} = req.params
-    const {newName} = req.body
-
-    const index = characters.findIndex(character => {
-      return character.id === +id
-    })
-
-    if(index === -1){
-      return res.status(404).send(`Character does not exist`)
-    }
-
-    characters[index].name = newName
     res.status(200).send(characters)
   },
 

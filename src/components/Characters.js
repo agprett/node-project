@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import Display from './Display'
 import CharacterSelect from './CharacterSelect'
 
@@ -12,16 +11,8 @@ class Characters extends React.Component {
       image: ''
     }
 
-    this.selectChar = this.selectChar.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.createChar = this.createChar.bind(this)
-  }
-
-  selectChar(id) {
-    axios.get(`api/characters/?id=${id}`).then(res => {
-      this.setState({character: res.data})
-    })
-    .catch(() => alert(this.state.fail))
   }
 
   handleChange(name, value) {
@@ -48,25 +39,15 @@ class Characters extends React.Component {
           <Display
             key={character.id}
             character={character}
-            selectChar={this.selectChar}
+            selectChar={this.props.selectChar}
             deleteChar={this.props.deleteChar}
           />
         )
       }
     )
-                            
-    const selected = this.state.character.map(character => {
+  
       return (
-        <CharacterSelect 
-          key={character.id}
-          character={character}
-          changeName={this.props.changeName}
-        />
-      )
-    })
-          
-    return (
-      <section className='characters'>
+        <section className='characters'>
         <section className='selector'>
           {charList}
         </section>
@@ -78,7 +59,12 @@ class Characters extends React.Component {
         </section>
         <section className='selected-section'>
           Selected Character
-          {selected}
+          <CharacterSelect 
+            key={this.props.selectedCharacter.id}
+            selectedCharacter={this.props.selectedCharacter}
+            changeName={this.props.changeName}
+            displayType='Character'
+          />
         </section>
       </section>
     )

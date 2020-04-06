@@ -22,17 +22,17 @@ class CharacterSelect extends React.Component {
   }
 
   updateName() {
-    this.props.changeName(this.props.character.id, this.state.userInput)
+    this.props.changeName(this.props.selectedCharacter.id, this.state.userInput)
     this.toggleEdit()
   }
 
   render() {
     return (
-      <section className='selected'>
+      <section className={`selected ${this.props.displayType === 'Character' ? 'hero' : 'villain'}`}>
       <img 
         className='selected-image'
-        src={this.props.character.image}
-        alt={this.props.character.name}
+        src={this.props.selectedCharacter.image}
+        alt={this.props.selectedCharacter.name}
       />
       {this.state.edit ? (
         <section>
@@ -40,7 +40,7 @@ class CharacterSelect extends React.Component {
           <button onClick={this.toggleEdit}>Cancel</button>
           <button onClick={this.updateName}>Save</button>
         </section>
-      ) : (<p onDoubleClick={this.toggleEdit}>{this.props.character.name}</p>)
+      ) : (<p onDoubleClick={this.toggleEdit}>{this.props.selectedCharacter.name}</p>)
       }
       </section>
     )

@@ -12,19 +12,25 @@ class App extends React.Component {
     super()
     this.state = {
       charactersArr: [],
+      selectedCharacter: {},
+      selectedJumper: {},
       fail: 'Failed to communicate with server'
     }
 
     this.newCharacter = this.newCharacter.bind(this)
-    this.changeName = this.changeName.bind(this)
     this.deleteChar = this.deleteChar.bind(this)
+    this.selectChar = this.selectChar.bind(this)
+    this.changeName = this.changeName.bind(this)
   }
 
   componentDidMount(){
     axios.get('api/characters').then(res => {
       this.setState({charactersArr: res.data})
     })
-    .catch(() => alert(this.state.fail))
+    .catch((e) => {
+      alert(this.state.fail)
+      console.log(e)
+    })
   }
   
   newCharacter(name, image, type){
@@ -34,18 +40,42 @@ class App extends React.Component {
     .catch(() => alert(this.state.fail))
   }
   
-  changeName(id, newName){
-    axios.put(`/api/characters/${id}`, {newName}).then(res => {
-      this.setState({charactersArr: res.data})
-    })
-    .catch(() => alert(this.state.fail))
-  }
-  
   deleteChar(id){
     axios.delete(`/api/characters/${id}`).then(res => {
       this.setState({charactersArr: res.data})
     })
-    .catch(() => alert(this.state.fail))
+    .catch((e) => {
+      alert(this.state.fail)
+      console.log(e)
+    })
+  }
+
+  selectChar(name, image, type){
+    axios.post('/api/player', {name, image, type}).then(res => {
+      if(res.data.type === 'character'){
+        this.setState({selectedCharacter: res.data})
+      } else {
+        this.setState({selectedJumper: res.data})
+      }
+    })
+    .catch((e) => {
+      alert(this.state.fail)
+      console.log(e)
+    })
+  }
+  
+  changeName(id, newName){
+    axios.put(`/api/player/${id}`, {newName}).then(res => {
+      if(res.data.type === 'character'){
+        this.setState({selectedCharacter: res.data})
+      } else {
+        this.setState({selectedJumper: res.data})
+      }
+    })
+    .catch((e) => {
+      alert(this.state.fail)
+      console.log(e)
+    })
   }
 
   render() {
@@ -57,13 +87,17 @@ class App extends React.Component {
           charactersArr={this.state.charactersArr}
           newCharacter={this.newCharacter}
           deleteChar={this.deleteChar}
+          selectedCharacter={this.state.selectedCharacter}
+          selectChar={this.selectChar}
           changeName={this.changeName}
-        />
+          />
         Choose Your Obstacle
         <Jumpers
           charactersArr={this.state.charactersArr}
           newCharacter={this.newCharacter}
           deleteChar={this.deleteChar}
+          selectedJumper={this.state.selectedJumper}
+          selectChar={this.selectChar}
           changeName={this.changeName}
         />
       </div>

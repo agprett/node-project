@@ -1,7 +1,6 @@
 import React from 'react'
   
 function Display(props) {
-  console.log(props)
   return (
     <div className={`character ${props.character.type === 'character' ? 'hero' : 'villain'}`}>
       <img
@@ -11,7 +10,7 @@ function Display(props) {
         />
       {props.character.name}
       <button
-        onClick={() => props.selectChar(props.character.id)}
+        onClick={() => props.selectChar(props.character.name, props.character.image, props.character.type)}
       >
         Select
       </button>
