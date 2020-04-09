@@ -118,7 +118,7 @@
 }
 
 .jumping {
-  animation: jump 1.5s 1;
+  animation: jump 1.5s 1 linear;
   animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
 }
 
@@ -126,7 +126,11 @@
   from {
     transform: translateY(0px);
   }
-  50% {
+  45% {
+    transform: translateY(-100px);
+  }
+
+  55% {
     transform: translateY(-100px);
   }
 
